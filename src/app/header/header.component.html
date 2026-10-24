@@ -1,0 +1,13 @@
+<header class="page-header">
+  <div class="header-text">
+    <h1>{{ heading }}</h1>
+    <p>{{ subtitle }}</p>
+  </div>
+
+  @if (showNewPaper) {
+    <a class="primary-button" routerLink="/new-paper">
+      <span class="button-icon" aria-hidden="true">＋</span>
+      New paper
+    </a>
+  }
+</header>

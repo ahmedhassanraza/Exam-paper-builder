@@ -1,0 +1,44 @@
+<app-header
+  heading="Settings"
+  subtitle="These details will appear on new papers. Data stays in this browser."
+  [showNewPaper]="false"
+></app-header>
+
+@if (message) {
+  <p class="notice success" role="status">{{ message }}</p>
+}
+@if (errorMessage) {
+  <p class="notice error" role="alert">{{ errorMessage }}</p>
+}
+
+<section class="card">
+  <h2>Default heading</h2>
+  <label class="field">
+    <span>School name</span>
+    <input type="text" name="schoolName" [(ngModel)]="settings.schoolName" />
+  </label>
+  <label class="field">
+    <span>Address / campus (optional)</span>
+    <input type="text" name="address" [(ngModel)]="settings.address" />
+  </label>
+  <label class="field">
+    <span>Default instructions (optional)</span>
+    <textarea name="defaultInstructions" rows="4" [(ngModel)]="settings.defaultInstructions"></textarea>
+  </label>
+  <button type="button" class="dark-button" (click)="saveSettings()">Save settings</button>
+</section>
+
+<section class="card">
+  <h2>Backup</h2>
+  <p>
+    Papers are stored only in this browser. Download a backup file so you can restore them later.
+  </p>
+  <div class="actions">
+    <button type="button" class="ghost-button" (click)="downloadBackup()">Download backup</button>
+    <label class="ghost-button file-button">
+      Restore backup
+      <input type="file" accept="application/json,.json" (change)="restoreBackup($event)" />
+    </label>
+    <button type="button" class="danger-button" (click)="deleteAllPapers()">Delete all papers</button>
+  </div>
+</section>

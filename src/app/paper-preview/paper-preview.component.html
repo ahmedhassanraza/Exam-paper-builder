@@ -1,0 +1,82 @@
+@if (missing || !paper) {
+  <section class="missing">
+    <h1>Paper not found</h1>
+    <p>This paper is not saved in this browser.</p>
+    <a class="primary-button" routerLink="/">Back to dashboard</a>
+  </section>
+} @else {
+  <div class="preview-page">
+    <div class="preview-toolbar no-print">
+      <button type="button" class="ghost-button" (click)="goBack()">
+        {{ embedded ? 'Back to editor' : 'Back to dashboard' }}
+      </button>
+      <div class="toolbar-actions">
+        @if (!embedded) {
+          <a class="ghost-button" [routerLink]="['/papers', paper.id, 'edit']">Edit</a>
+        }
+        <button type="button" class="primary-button" (click)="printPaper()">Print / Save as PDF</button>
+      </div>
+    </div>
+
+    <article class="paper-sheet" [attr.aria-label]="paper.title || 'Exam paper preview'">
+      <header class="sheet-header">
+        @if (paper.institution) {
+          <p class="school">{{ paper.institution }}</p>
+        }
+        @if (schoolAddress) {
+          <p class="address">{{ schoolAddress }}</p>
+        }
+        <h1>{{ paper.title || 'Untitled paper' }}</h1>
+        <div class="meta-row">
+          <span><strong>Subject:</strong> {{ paper.subject || '—' }}</span>
+          <span><strong>Class:</strong> {{ paper.className || '—' }}</span>
+          @if (paper.examDate) {
+            <span><strong>Date:</strong> {{ paper.examDate | date: 'mediumDate' }}</span>
+          }
+        </div>
+        <div class="meta-row">
+          <span><strong>Time allowed:</strong> {{ paper.durationMinutes || 0 }} minutes</span>
+          <span><strong>Maximum marks:</strong> {{ maximumMarks }}</span>
+        </div>
+        <div class="student-lines">
+          <span>Student name: ______________________________</span>
+          <span>Roll no: ____________________</span>
+        </div>
+      </header>
+
+      @if (paper.instructions) {
+        <section class="instructions">
+          <h2>Instructions</h2>
+          <p>{{ paper.instructions }}</p>
+        </section>
+      }
+
+      <ol class="questions">
+        @for (question of paper.questions; track question.id) {
+          <li class="question">
+            <div class="question-head">
+              <span class="q-number">Q{{ question.number }}.</span>
+              <span class="q-text">{{ question.text || 'Question text not added yet.' }}</span>
+              <span class="q-marks">({{ question.marks }} {{ question.marks === 1 ? 'mark' : 'marks' }})</span>
+            </div>
+
+            @if (question.type === 'mcq') {
+              <ol class="mcq-options">
+                @for (option of question.options; track $index) {
+                  <li>
+                    <span>{{ optionLetters[$index] }})</span>
+                    {{ option }}
+                  </li>
+                }
+              </ol>
+            } @else if (question.type === 'short') {
+              <div class="answer-space short" aria-hidden="true"></div>
+            } @else {
+              <div class="answer-space long" aria-hidden="true"></div>
+            }
+          </li>
+        }
+      </ol>
+    </article>
+  </div>
+}

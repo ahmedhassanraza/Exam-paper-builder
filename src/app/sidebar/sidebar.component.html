@@ -1,0 +1,37 @@
+<div class="sidebar">
+  <div class="brand">
+    <div class="brand-icon" aria-hidden="true">
+      <span>🎓</span>
+    </div>
+    <div class="brand-text">
+      <h3>Paper Builder</h3>
+      <p>Exam papers, ready to print</p>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav" aria-label="Main">
+    <a
+      class="nav-item"
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <span class="nav-icon" aria-hidden="true">▦</span>
+      <span>Dashboard</span>
+    </a>
+
+    <a class="nav-item" routerLink="/new-paper" routerLinkActive="active">
+      <span class="nav-icon" aria-hidden="true">✎</span>
+      <span>New paper</span>
+    </a>
+
+    <a class="nav-item" routerLink="/settings" routerLinkActive="active">
+      <span class="nav-icon" aria-hidden="true">⚙</span>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <p class="sidebar-footer">
+    Data is saved in this browser. Take a backup from Settings.
+  </p>
+</div>

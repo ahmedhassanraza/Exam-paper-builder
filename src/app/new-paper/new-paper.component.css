@@ -1,0 +1,177 @@
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.paper-form {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e1e9e4;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(25, 59, 53, 0.06);
+}
+
+.form-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.form-header h2 {
+  margin: 0 0 8px;
+  color: #193b35;
+  font-size: 26px;
+}
+
+.form-header p {
+  margin: 0;
+  color: #73817b;
+  font-size: 14px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  color: #29443c;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #dce5df;
+  border-radius: 9px;
+  background: #fbfcfb;
+  color: #193b35;
+  font: inherit;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #729b82;
+  box-shadow: 0 0 0 3px rgba(114, 155, 130, 0.15);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.marks-total { display:block; padding:12px 14px; border:1px solid #dce5df; border-radius:9px; background:#f3f7f4; font-weight:700; }
+.question-heading { display:flex; justify-content:space-between; align-items:center; gap:16px; margin:30px 0 14px; padding-top:20px; border-top:1px solid #edf1ee; }
+.question-heading h3 { margin:0 0 4px; color:#193b35; }
+.question-heading p { margin:0; color:#73817b; font-size:14px; }
+.question-card { position:relative; min-width:0; margin:14px 0; padding:22px; border:1px solid #dce5df; border-radius:12px; background:#fbfcfb; }
+.question-card legend { padding:0 8px; color:#193b35; font-weight:700; }
+.question-grid { display:grid; grid-template-columns:2fr 1fr; gap:18px; }
+.remove-question { position:absolute; top:-14px; right:16px; padding:5px 10px; border:1px solid #ecd0c9; border-radius:7px; color:#9c4033; background:white; cursor:pointer; }
+.remove-question:disabled { opacity:.45; cursor:not-allowed; }
+.option-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.option-entry { display:grid; grid-template-columns:24px minmax(0,1fr); align-items:center; gap:8px; }
+.option-entry > label:first-child { font-weight:700; }
+.option-entry input:not([type=radio]) { min-width:0; padding:10px; border:1px solid #dce5df; border-radius:8px; }
+.correct-label { grid-column:2; display:flex; align-items:center; gap:6px; font-size:13px; }
+.answer-note { grid-column:1/-1; color:#73817b; font-size:14px; }
+.form-errors { margin-top:20px; padding:14px 18px; border:1px solid #edc9c3; border-radius:9px; color:#802d23; background:#fff5f3; }
+.form-errors ul { margin:8px 0 0; padding-left:20px; }
+.form-group small { color:#73817b; }
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid #edf1ee;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #f6c34d;
+  color: #193b35;
+}
+
+.btn-primary:hover {
+  background: #edb638;
+}
+
+.btn-secondary {
+  background: #edf2ef;
+  color: #29443c;
+}
+
+.btn-secondary:hover {
+  background: #e0e9e3;
+}
+
+@media (max-width: 600px) {
+  .paper-form {
+    padding: 18px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .question-grid, .option-grid { grid-template-columns: 1fr; }
+
+  .full-width {
+    grid-column: auto;
+  }
+
+  .form-header h2 {
+    font-size: 22px;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .paper-form { padding: 14px; border-radius: 12px; }
+  .form-header { flex-direction: column; gap: 12px; }
+  .form-header > button, .question-heading > button { width: 100%; min-height: 44px; }
+  .question-card { padding: 17px 12px 14px; }
+  .remove-question { right: 10px; }
+}

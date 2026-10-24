@@ -1,0 +1,108 @@
+:host {
+  display: block;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #dce4ed;
+  border-radius: 13px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.card h2 {
+  margin: 0 0 14px;
+  color: #102e29;
+  font-size: 16px;
+}
+
+.card p {
+  margin: 0 0 14px;
+  color: #405c7c;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  color: #102e29;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  border: 1px solid #c8d6e8;
+  border-radius: 9px;
+  padding: 10px 12px;
+  font: inherit;
+  font-weight: 400;
+  color: #183b35;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dark-button,
+.ghost-button,
+.danger-button {
+  border-radius: 9px;
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dark-button {
+  border: none;
+  background: #193b35;
+  color: #fff;
+}
+
+.ghost-button {
+  border: 1px solid #c8d6e8;
+  background: #fff;
+  color: #17372f;
+}
+
+.danger-button {
+  border: none;
+  background: transparent;
+  color: #b42318;
+}
+
+.file-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.file-button input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.notice {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+.success {
+  background: #e7f6ee;
+  color: #17663a;
+}
+
+.error {
+  background: #fdecec;
+  color: #b42318;
+}

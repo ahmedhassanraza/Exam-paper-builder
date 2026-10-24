@@ -1,0 +1,87 @@
+<section class="papers-panel">
+  <div class="panel-header">
+    <h2>All papers</h2>
+
+    <div class="search-box">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input
+        type="search"
+        id="paper-search"
+        [value]="searchQuery()"
+        (input)="onSearch($event)"
+        placeholder="Search by title, subject, class..."
+        aria-label="Search papers"
+      />
+    </div>
+  </div>
+
+  @if (!hasAnyPapers()) {
+    <div class="empty-state">
+      <div class="document-icon" aria-hidden="true">
+        <span>▤</span>
+      </div>
+      <h3>No papers yet</h3>
+      <p>
+        Create your first paper with a school heading, questions and marks,
+        <br class="desktop-break" />
+        then print it as a PDF.
+      </p>
+      <a class="primary-button" routerLink="/new-paper">
+        <span class="button-icon" aria-hidden="true">＋</span>
+        Create first paper
+      </a>
+    </div>
+  } @else if (filteredPapers().length === 0) {
+    <div class="empty-state">
+      <div class="document-icon" aria-hidden="true">
+        <span>⌕</span>
+      </div>
+      <h3>No matching papers</h3>
+      <p>Try a different title, subject or class.</p>
+    </div>
+  } @else {
+    <ul class="paper-list">
+      @for (paper of filteredPapers(); track paper.id) {
+        <li class="paper-card">
+          <div class="paper-main">
+            <h3>{{ paper.title }}</h3>
+            <p class="paper-meta">
+              <span>{{ paper.subject }}</span>
+              <span aria-hidden="true">·</span>
+              <span>Class {{ paper.className }}</span>
+              @if (paper.examDate) {
+                <span aria-hidden="true">·</span>
+                <span>{{ paper.examDate | date: 'mediumDate' }}</span>
+              }
+            </p>
+            <p class="paper-counts">
+              {{ paper.questions.length }} question{{ paper.questions.length === 1 ? '' : 's' }}
+              · {{ paper.totalMarks }} mark{{ paper.totalMarks === 1 ? '' : 's' }}
+              · {{ paper.durationMinutes }} min
+            </p>
+          </div>
+          <div class="paper-actions">
+            <a class="ghost-button" [routerLink]="['/papers', paper.id, 'edit']">Edit</a>
+            <a class="ghost-button" [routerLink]="['/papers', paper.id, 'preview']">Preview</a>
+            <button type="button" class="danger-button" (click)="askDelete(paper)">Delete</button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</section>
+
+@if (paperToDelete(); as paper) {
+  <div class="modal-backdrop" (click)="cancelDelete()">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="delete-title" (click)="$event.stopPropagation()">
+      <h3 id="delete-title">Delete this paper?</h3>
+      <p>
+        <strong>{{ paper.title }}</strong> will be removed from this browser. This cannot be undone.
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="ghost-button" (click)="cancelDelete()">Cancel</button>
+        <button type="button" class="danger-fill" (click)="confirmDelete()">Delete paper</button>
+      </div>
+    </div>
+  </div>
+}

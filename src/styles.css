@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --sidebar: #193b35;
+  --bg: #e7eeea;
+  --text: #102e29;
+  --muted: #405c7c;
+  --gold: #f6c34d;
+  --card: #ffffff;
+  --border: #dce4ed;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+img, video, canvas, svg { max-width: 100%; }
+input, select, textarea { max-width: 100%; }
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #193b35;
+  outline-offset: 2px;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  html,
+  body,
+  app-root,
+  .app-layout,
+  .main-content {
+    background: #fff !important;
+    width: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .no-print,
+  app-sidebar,
+  .preview-toolbar,
+  .editor-header,
+  .header-actions {
+    display: none !important;
+  }
+
+  .paper-sheet {
+    max-width: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  button, .primary-button, .ghost-button, .dark-button, .danger-button, .danger-fill { min-height: 42px; }
+  input, select, textarea { font-size: 16px; }
+  .card { padding: 16px; }
+  .actions > * { flex: 1 1 auto; text-align: center; }
+}
